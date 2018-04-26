@@ -11,84 +11,84 @@ var app = {
     options: ['One', 'Two']
 };
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        ' ',
-        app.subtitle,
-        ' '
-    ),
-    React.createElement(
-        'p',
-        null,
-        ' ',
-        app.options.length > 0 ? 'Here are your options' : 'No options',
-        ' '
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
-    )
-);
+var onFormSumbit = function onFormSumbit(e) {
+    e.preventDefault();
+    var option = e.target.elements.option.value;
 
-var count = 0;
-var addOne = function addOne() {
-    console.log('addOne');
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+        renderApp();
+    }
 };
-var minusOne = function minusOne() {
-    console.log('minusOne');
-};
-var reset = function reset() {
-    console.log('reset');
-};
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        '+1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: minusOne },
-        ' -1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        'reset'
-    )
-);
-//Challenge
-//Make button "-1" setup minusOne function and register - log "minusOne"
-//Make reset button "reset" - setup reset function - log "reset"
 
+var removeAll = function removeAll(e) {
+    app.options.length = 0;
+    renderApp();
+};
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+var renderApp = function renderApp() {
+    var template = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            app.title
+        ),
+        app.subtitle && React.createElement(
+            'p',
+            null,
+            ' ',
+            app.subtitle,
+            ' '
+        ),
+        React.createElement(
+            'p',
+            null,
+            ' ',
+            app.options.length > 0 ? 'Here are your options' : 'No options',
+            ' '
+        ),
+        React.createElement(
+            'p',
+            null,
+            app.options.length
+        ),
+        React.createElement(
+            'ol',
+            null,
+            React.createElement(
+                'li',
+                null,
+                'Item one'
+            ),
+            React.createElement(
+                'li',
+                null,
+                'Item two'
+            )
+        ),
+        React.createElement(
+            'form',
+            { onSubmit: onFormSumbit },
+            React.createElement('input', { type: 'text', name: 'option' }),
+            React.createElement(
+                'button',
+                null,
+                'Add Option'
+            ),
+            React.createElement(
+                'button',
+                { onClick: removeAll },
+                'Remove All'
+            )
+        )
+    );
+
+    ReactDOM.render(template, appRoot);
+};
+
+renderApp();

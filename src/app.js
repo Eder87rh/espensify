@@ -9,42 +9,45 @@ const app = {
     options: ['One', 'Two']
 };
 
-const template = (
-    <div>
-        <h1>{ app.title }</h1>
-        { app.subtitle && <p> { app.subtitle } </p> }
-        <p> { app.options.length > 0 ? 'Here are your options' : 'No options' } </p>
-        <ol>
-            <li>Item one</li>
-            <li>Item two</li>
-        </ol>
-    </div>
-)
+const onFormSumbit = (e) => {
+    e.preventDefault();
+    const option = e.target.elements.option.value;
 
-let count = 0;
-const addOne = () => {
-    console.log('addOne')
+    if(option){
+        app.options.push(option)
+        e.target.elements.option.value = '';
+        renderApp();
+    }
 }
-const minusOne = () => {
-    console.log('minusOne')
-}
-const reset = () => {
-    console.log('reset')
-}
-const templateTwo = (
-    <div>
-        <h1>Count: {count}</h1>
-        <button onClick={addOne} >+1</button>
-        <button onClick={minusOne}> -1</button>
-        <button onClick={reset}>reset</button>
-    </div>
-);
-//Challenge
-//Make button "-1" setup minusOne function and register - log "minusOne"
-//Make reset button "reset" - setup reset function - log "reset"
 
-
+const removeAll = (e) => {
+    app.options.length = 0;
+    renderApp();
+}
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+
+const renderApp =() => {
+    const template = (
+        <div>
+            <h1>{ app.title }</h1>
+            { app.subtitle && <p> { app.subtitle } </p> }
+            <p> { app.options.length > 0 ? 'Here are your options' : 'No options' } </p>
+            <p>{app.options.length}</p>
+            <ol>
+                <li>Item one</li>
+                <li>Item two</li>
+            </ol>
+            <form onSubmit={onFormSumbit}>
+                <input type="text" name="option" />
+                <button >Add Option</button>
+                <button onClick={removeAll}>Remove All</button>
+            </form>
+        </div>
+    )
+    
+    ReactDOM.render(template,appRoot)
+}
+
+renderApp();
