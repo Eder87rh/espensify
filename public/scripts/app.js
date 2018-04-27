@@ -8,7 +8,7 @@ console.log('App.js is running');
 var app = {
     title: 'Indesicion App',
     subtitle: 'Put your life in the hands of a computer',
-    options: ['One', 'Two']
+    options: []
 };
 
 var onFormSumbit = function onFormSumbit(e) {
@@ -25,6 +25,12 @@ var onFormSumbit = function onFormSumbit(e) {
 var removeAll = function removeAll(e) {
     app.options.length = 0;
     renderApp();
+};
+
+var onMakeDesicion = function onMakeDesicion() {
+    var randomNum = Math.floor(Math.random() * app.options.length);
+    var option = app.options[randomNum];
+    alert(option);
 };
 
 var appRoot = document.getElementById('app');
@@ -53,9 +59,9 @@ var renderApp = function renderApp() {
             ' '
         ),
         React.createElement(
-            'p',
-            null,
-            app.options.length
+            'button',
+            { disabled: app.options.length === 0, onClick: onMakeDesicion },
+            ' What should i do?'
         ),
         React.createElement(
             'button',
