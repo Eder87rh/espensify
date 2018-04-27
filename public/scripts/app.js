@@ -58,18 +58,21 @@ var renderApp = function renderApp() {
             app.options.length
         ),
         React.createElement(
+            'button',
+            { onClick: removeAll },
+            'Remove All'
+        ),
+        React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'Item one'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Item two'
-            )
+            app.options.map(function (option, index) {
+                return React.createElement(
+                    'li',
+                    { key: index },
+                    ' option: ',
+                    option
+                );
+            })
         ),
         React.createElement(
             'form',
@@ -79,11 +82,6 @@ var renderApp = function renderApp() {
                 'button',
                 null,
                 'Add Option'
-            ),
-            React.createElement(
-                'button',
-                { onClick: removeAll },
-                'Remove All'
             )
         )
     );

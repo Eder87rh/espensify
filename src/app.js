@@ -35,14 +35,17 @@ const renderApp =() => {
             { app.subtitle && <p> { app.subtitle } </p> }
             <p> { app.options.length > 0 ? 'Here are your options' : 'No options' } </p>
             <p>{app.options.length}</p>
+            <button onClick={removeAll}>Remove All</button>
             <ol>
-                <li>Item one</li>
-                <li>Item two</li>
+                {
+                    app.options.map((option,index) => {
+                        return <li key={index}> option: {option}</li>
+                    })
+                }
             </ol>
             <form onSubmit={onFormSumbit}>
                 <input type="text" name="option" />
                 <button >Add Option</button>
-                <button onClick={removeAll}>Remove All</button>
             </form>
         </div>
     )
