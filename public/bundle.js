@@ -70,16 +70,13 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_js__ = __webpack_require__(1);
-/* import { square, add } from  './utils.js'
+
 
 console.log('app.js is running!!!')
-console.log(square(4)+ add(2,2)) */
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* square */](4)+ __WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](2,2))
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* default */](100, 81))
 
 
-
-const age = 17
-console.log(`Adult = ${__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* isAdult */](age)} `)
-console.log(`Can drink = ${__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* canDrink */](age)} `)
 
 /***/ }),
 /* 1 */
@@ -90,17 +87,12 @@ console.log(`Can drink = ${__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* canDri
 console.log('utils.js is running')
 
 const square = x => x*x
-/* unused harmony export square */
+/* harmony export (immutable) */ __webpack_exports__["c"] = square;
 
 const add = (a,b) => a+b
-/* unused harmony export add */
+/* harmony export (immutable) */ __webpack_exports__["a"] = add;
 
-
-const isAdult = (age) => age>=18
-/* harmony export (immutable) */ __webpack_exports__["b"] = isAdult;
-
-const canDrink = (age) => age>=18
-/* harmony export (immutable) */ __webpack_exports__["a"] = canDrink;
+/* harmony default export */ __webpack_exports__["b"] = ((a,b) => a-b);
 
 
 
