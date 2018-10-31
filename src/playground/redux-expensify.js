@@ -18,8 +18,9 @@ const addExpense = ({
     }
 })
 
-const removeExpense = ({
-    
+const removeExpense = ({id} = {}) => ({
+    type: 'REMOVE_EXPENSE',
+    id,
 })
 
 
@@ -33,7 +34,9 @@ const expensesReducer = (state = expensersReducerDefaultState, action) => {
                 action.expense
             ]
         case 'REMOVE_EXPENSE':
-            return 
+            return state.filter(({id}) => {
+                return id !== action.id
+            })
         default:
             return state
     }
