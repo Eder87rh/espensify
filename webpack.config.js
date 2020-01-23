@@ -1,6 +1,10 @@
-const path = require('path')
+const path = require('path');
 
-module.exports = {
+module.exports = (env) => {
+  console.log("TCL: env", env)
+  const isProduction = env === 'production';
+
+  return {
     //entry: './src/playground/hoc.js',
     entry: './src/app.js',
     //entry: './src/playground/redux-expensify.js',
@@ -23,9 +27,11 @@ module.exports = {
             ]
         }]
     },
-    devtool:'cheap-module-eval-source-map',
+    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
     devServer:{
         contentBase: path.join(__dirname,'public'),
         historyApiFallback: true
     }
+  }
 }
+
