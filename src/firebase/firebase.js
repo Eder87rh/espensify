@@ -13,18 +13,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-/* const database = firebase.database();
+const database = firebase.database();
 
-database.ref().set({
-  name: 'Eder Ramírez',
-  age: 26,
-  isSingle: false,
-  location: {
-    city: 'Lazaro',
-    country: 'Mexico'
-  }
-})
-
-database.ref('age').set({
-  age: 27
-}) */
+export { firebase, database as default };
